@@ -7,6 +7,7 @@ public class PuzzlePiece {
 	int rootX;
 	int rootY;
 	public boolean isSelected;
+	public boolean isKeyPiece;
 	
 	/**
 	 * Initializes a puzzle piece
