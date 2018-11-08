@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import klotski.controller.ExitApplicationController;
+import klotski.controller.ResetPuzzleController;
 import klotski.entity.Board;
 
 import javax.swing.GroupLayout;
@@ -47,23 +48,29 @@ public class KlotskiApp extends JFrame {
 	 */
 	public KlotskiApp(Board b) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 520);
+		setBounds(100, 100, 450, 600);
 		contentPane = new JPanel();
+		contentPane.setPreferredSize(new Dimension(401, 501));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton closeApplication = new JButton("Close");
+		
+		JPanel panel = new KlotskiPanel(b);
+		panel.setSize(new Dimension(401, 501));
 		
 		JLabel lblMovesMade = new JLabel("Moves Made: 0");
 
+		
 		JButton resetApplication = new JButton("Reset Game");
+		resetApplication.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e) {
+						new ResetPuzzleController(KlotskiApp.this,b).resetPuzzle(null);
+					}
+				});
+
 		
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.GRAY);
-		panel.setSize(new Dimension(400, 500));
-		
-		
+		JButton closeApplication = new JButton("Close");
 		closeApplication.addActionListener( new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e) {
@@ -77,7 +84,7 @@ public class KlotskiApp extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 376, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(33)
@@ -94,7 +101,7 @@ public class KlotskiApp extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 384, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblMovesMade)

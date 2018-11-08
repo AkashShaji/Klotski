@@ -2,10 +2,10 @@ package klotski.entity;
 
 public class PuzzlePiece {
 
-	int height;
-	int width;
-	int rootX;
-	int rootY;
+	public int height;
+	public int width;
+	public int rootX;
+	public int rootY;
 	public boolean isSelected;
 	public boolean isKeyPiece;
 	

@@ -5,28 +5,26 @@ import java.util.ArrayList;
 public class Board {
 	
 	//Allows for more configurations to eventually be added
-	enum config {
+	public enum config {
 		DEFAULT
 	}
 	
 	//Puzzle Pieces are stored in the following format:
 	// x,y,width,height
 	final int[][] DEFAULT_CONFIG = new int [][] {
-			{0,0,1,1},
+			{0,0,1,2},
+			{1,0,1,1},
+			{2,0,1,1},
 			{3,0,1,1},
-			{0,1,1,2},
-			{1,1,1,1},
-			{2,1,1,1},
-			{3,1,1,2},
-			{1,2,2,1},
-			{0,3,1,2},
-			{1,3,2,2},
-			{3,3,1,2}
+			{1,1,1,2},
+			{2,1,2,2},
+			{0,2,1,2},
+			{1,3,2,1},
+			{3,3,1,1},
+			{2,4,2,1}
 	};
 	
 	public PuzzlePiece[][] board;
-	
-	public ArrayList<PuzzlePiece> pieces;
 	
 	public PuzzlePiece selectedPiece;
 	
@@ -35,8 +33,21 @@ public class Board {
 	 * @param c
 	 */
 	public Board(config c){
+		this.reset(c);
+	}
+	
+	public Board(){
+		this(config.DEFAULT);
+	}
+	
+	/**
+	 * Resets the board using a given config
+	 * @param c
+	 */
+	public void reset(config c)
+	{
+		System.out.println("trying");
 		board = new PuzzlePiece[4][5];
-		pieces = new ArrayList<PuzzlePiece>();
 		switch(c)
 		{
 			default:
@@ -44,11 +55,8 @@ public class Board {
 				{
 					PlacePiece(new PuzzlePiece(piece[0],piece[1],piece[2],piece[3]));
 				}	
+				board[2][1].isKeyPiece = true;
 		}
-	}
-	
-	public Board(){
-		this(config.DEFAULT);
 	}
 	
 	/**
@@ -121,28 +129,38 @@ public class Board {
 	
 	/**
 	 * Deselects the currently selected piece and selects the piece and the given coordinate
+	 * returns true if a new piece was selected
 	 */
 	public void SelectPiece(int x,int y) {
 		if(selectedPiece != null)
 		{
 			selectedPiece.isSelected = false;
 		}
-		board[x][y].isSelected = true;
-		selectedPiece = board[x][y];
+		if(board[x][y] != null)
+		{
+			board[x][y].isSelected = true;
+			selectedPiece = board[x][y];
+		}
 	}
 	
+
 	/**
 	 * toString for testing purposes
 	 */
 	public String toString()
 	{
 		String ret = "";
-		for(int y = board[0].length -1; y >= 0;y--)
+		for(int y = 0; y < 5;y++)
 		{
 			for(int x = 0; x<board.length;x++)
 			{
 				if(board[x][y] != null)
 				{
+					if(board[x][y].rootX == x && board[x][y].rootY == y)
+					{
+						ret+="R";
+					}
+					
 					if(board[x][y].isSelected)
 					{
 						ret+="sel";
