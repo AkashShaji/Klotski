@@ -1,7 +1,5 @@
 package klotski.entity;
 
-import java.util.ArrayList;
-
 public class Board {
 	
 	//Allows for more configurations to eventually be added

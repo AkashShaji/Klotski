@@ -1,17 +1,11 @@
 package klotski.boundary;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import klotski.controller.ExitApplicationController;
@@ -23,7 +17,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class KlotskiApp extends JFrame {
 
