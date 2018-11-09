@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import klotski.controller.ExitApplicationController;
+import klotski.controller.KlotskiPanelController;
 import klotski.controller.MoveBlockController;
 import klotski.controller.ResetPuzzleController;
 import klotski.entity.Board;
@@ -22,6 +23,10 @@ public class KlotskiApp extends JFrame {
 
 	private JPanel contentPane;
 
+	//TODO: win 
+	//TODO: moves made
+	//TODO : select config?
+	//TODO Test cases
 	
 	/**
 	 * Create the frame.
@@ -38,10 +43,11 @@ public class KlotskiApp extends JFrame {
 
 		
 		JPanel panel = new KlotskiPanel(b);
-		MoveBlockController moveBlockController = new MoveBlockController(b, (KlotskiPanel) panel);
-
-		panel.add(moveBlockController);
 		
+
+		
+		panel.addMouseListener(new KlotskiPanelController(b, (KlotskiPanel)panel));
+		panel.add(new MoveBlockController(b, (KlotskiPanel) panel));		
 		panel.setSize(new Dimension(401, 501));
 		
 		JLabel lblMovesMade = new JLabel("Moves Made: 0");
