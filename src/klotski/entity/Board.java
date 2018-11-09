@@ -46,8 +46,8 @@ public class Board {
 	 */
 	public void reset(config c)
 	{
-		System.out.println("trying");
 		board = new PuzzlePiece[4][5];
+		selectedPiece = null;
 		switch(c)
 		{
 			default:

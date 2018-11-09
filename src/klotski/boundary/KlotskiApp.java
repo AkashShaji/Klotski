@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import klotski.controller.ExitApplicationController;
+import klotski.controller.MoveBlockController;
 import klotski.controller.ResetPuzzleController;
 import klotski.entity.Board;
 
@@ -26,24 +27,6 @@ public class KlotskiApp extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KlotskiApp frame = new KlotskiApp(new Board());
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
-
-	/**
 	 * Create the frame.
 	 */
 	public KlotskiApp(Board b) {
@@ -54,6 +37,7 @@ public class KlotskiApp extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
+
 		
 		JPanel panel = new KlotskiPanel(b);
 		panel.setSize(new Dimension(401, 501));
@@ -65,7 +49,7 @@ public class KlotskiApp extends JFrame {
 		resetApplication.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) {
-						new ResetPuzzleController(KlotskiApp.this,b).resetPuzzle(null);
+						new ResetPuzzleController(b,(KlotskiPanel)panel).resetPuzzle(null);
 					}
 				});
 

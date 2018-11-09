@@ -33,18 +33,14 @@ public class Main {
 		b.MovePiece(-1,0);
 		System.out.println(b);;
 		*/
-		
-		System.out.println("test");
-		
+			
 		Board b = new Board();
-
+		System.out.println(b);
 		final KlotskiApp app = new KlotskiApp(b);
 		app.addWindowListener (new WindowAdapter() {
-
 			public void windowClosing(WindowEvent e) {
 				new ExitApplicationController(app).windowClosing(null);;
 			}
-
 		});
 
 		// Tell app window that we will be responsible for closing application  
