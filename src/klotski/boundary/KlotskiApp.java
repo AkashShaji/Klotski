@@ -52,9 +52,11 @@ public class KlotskiApp extends JFrame {
 		panel.setSize(new Dimension(401, 501));
 		
 		JLabel lblMovesMade = new JLabel("Moves Made: 0");
+		lblMovesMade.setFocusable(false);
 
 		
 		JButton resetApplication = new JButton("Reset Game");
+		resetApplication.setFocusable(false);
 		resetApplication.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) {
@@ -64,6 +66,7 @@ public class KlotskiApp extends JFrame {
 
 		
 		JButton closeApplication = new JButton("Close");
+		closeApplication.setFocusable(false);
 		closeApplication.addActionListener( new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e) {
