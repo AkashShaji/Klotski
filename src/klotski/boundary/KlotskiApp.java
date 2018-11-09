@@ -6,9 +6,12 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import klotski.controller.ExitApplicationController;
@@ -26,10 +29,12 @@ public class KlotskiApp extends JFrame {
 
 	private JPanel contentPane;
 
+	
 	/**
 	 * Create the frame.
 	 */
 	public KlotskiApp(Board b) {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
 		contentPane = new JPanel();
@@ -40,6 +45,10 @@ public class KlotskiApp extends JFrame {
 
 		
 		JPanel panel = new KlotskiPanel(b);
+		MoveBlockController moveBlockController = new MoveBlockController(b, (KlotskiPanel) panel);
+
+		panel.add(moveBlockController);
+		
 		panel.setSize(new Dimension(401, 501));
 		
 		JLabel lblMovesMade = new JLabel("Moves Made: 0");
@@ -61,6 +70,11 @@ public class KlotskiApp extends JFrame {
 					new ExitApplicationController(KlotskiApp.this).windowClosing(null);
 				}
 		});
+		
+		
+		
+		
+		
 		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

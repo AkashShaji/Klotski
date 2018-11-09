@@ -81,19 +81,17 @@ public class Board {
 	 * @param deltaY, the change in y of the piece
 	 */
 	public void MovePiece(int deltaX, int deltaY ){
+
 		//checks to see if piece is selected and whether or not the piece would be out of bounds
-		
 		if(selectedPiece != null &&
-				selectedPiece.rootX + selectedPiece.width + deltaX < 4 &&
-				selectedPiece.rootY + selectedPiece.height + deltaY < 5 &&
+				selectedPiece.rootX + selectedPiece.width + deltaX < 4 +1 &&
+				selectedPiece.rootY + selectedPiece.height + deltaY < 5 + 1 &&
 				selectedPiece.rootX + deltaX >= 0 &&
 				selectedPiece.rootY + deltaY >= 0)
 		{
 
-			
 			//Checking to see if the piece can be moved
 			boolean canMove = true;
-			
 			
 			for(int x = selectedPiece.rootX + deltaX; x < selectedPiece.width + selectedPiece.rootX + deltaX; x++)
 			{
@@ -102,12 +100,13 @@ public class Board {
 					//If collision is detected, don't move
 					if((board[x][y] != null) && (!board[x][y].isSelected))
 					{
+						System.out.println(x + " " + y);
+						
 						canMove = false;
 					}
 				}
 			}
 			if(canMove) {
-			
 				//Clear the piece from the board
 				for(int x = 0; x < selectedPiece.width; x++) {
 					for(int y = 0; y < selectedPiece.height; y++){
