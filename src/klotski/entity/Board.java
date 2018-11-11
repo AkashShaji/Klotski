@@ -7,6 +7,7 @@ public class Board {
 		DEFAULT
 	}
 	
+	
 	//Puzzle Pieces are stored in the following format:
 	// x,y,width,height
 	final int[][] DEFAULT_CONFIG = new int [][] {
@@ -22,9 +23,18 @@ public class Board {
 			{2,4,2,1}
 	};
 	
+	//height and width of board
+	public final int BOARD_WIDTH = 4;
+	public final int BOARD_HEIGHT = 5;
+	
+	//The puzzle board
 	public PuzzlePiece[][] board;
 	
+	//The currently selected piece
 	public PuzzlePiece selectedPiece;
+	
+	//Moves made
+	public int movesMade = 0;
 	
 	/**
 	 * Initializes a board
@@ -34,6 +44,9 @@ public class Board {
 		this.reset(c);
 	}
 	
+	/**
+	 * Default constructor
+	 */
 	public Board(){
 		this(config.DEFAULT);
 	}
@@ -44,7 +57,7 @@ public class Board {
 	 */
 	public void reset(config c)
 	{
-		board = new PuzzlePiece[4][5];
+		board = new PuzzlePiece[BOARD_WIDTH][BOARD_HEIGHT];
 		selectedPiece = null;
 		switch(c)
 		{
@@ -82,8 +95,8 @@ public class Board {
 
 		//checks to see if piece is selected and whether or not the piece would be out of bounds
 		if(selectedPiece != null &&
-				selectedPiece.rootX + selectedPiece.width + deltaX < 4 +1 &&
-				selectedPiece.rootY + selectedPiece.height + deltaY < 5 + 1 &&
+				selectedPiece.rootX + selectedPiece.width + deltaX < BOARD_WIDTH +1 &&
+				selectedPiece.rootY + selectedPiece.height + deltaY < BOARD_HEIGHT + 1 &&
 				selectedPiece.rootX + deltaX >= 0 &&
 				selectedPiece.rootY + deltaY >= 0)
 		{
@@ -97,9 +110,7 @@ public class Board {
 				{
 					//If collision is detected, don't move
 					if((board[x][y] != null) && (!board[x][y].isSelected))
-					{
-						System.out.println(x + " " + y);
-						
+					{						
 						canMove = false;
 					}
 				}
@@ -116,7 +127,7 @@ public class Board {
 				selectedPiece.rootY += deltaY;
 				//Place the piece
 				PlacePiece(selectedPiece);
-				
+				movesMade++;
 
 			}
 		}		
@@ -138,6 +149,14 @@ public class Board {
 			board[x][y].isSelected = true;
 			selectedPiece = board[x][y];
 		}
+	}
+	
+	public boolean isWinState()
+	{
+		if(board[1][3] != null)
+			return board[1][3].isKeyPiece && board[1][3].rootX == 1 && board[1][3].rootY == 3;
+		else
+			return false;
 	}
 	
 

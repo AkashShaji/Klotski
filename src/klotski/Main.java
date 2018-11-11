@@ -5,25 +5,19 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import org.junit.Assert;
+
 import klotski.boundary.KlotskiApp;
 import klotski.entity.*;
 import klotski.controller.ExitApplicationController;
 
 public class Main {
-	
-	public static void main(String[] args) {
-		
-		Board b = new Board();
-		final KlotskiApp app = new KlotskiApp(b);
-		app.addWindowListener (new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				new ExitApplicationController(app).windowClosing(null);;
-			}
-		});
-
-		// Tell app window that we will be responsible for closing application  
-		app.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		app.setResizable(false);
+	/**
+	 * Initiates a Klotski app and makes it visible
+	 * @param args
+	 */
+	public static void main(String[] args) {		
+		final KlotskiApp app = new KlotskiApp(new Board());
 		app.setVisible(true);
 	}
 	

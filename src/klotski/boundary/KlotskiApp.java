@@ -3,6 +3,8 @@ package klotski.boundary;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,20 +21,20 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class KlotskiApp extends JFrame {
 
 	private JPanel contentPane;
-
-	//TODO: win 
-	//TODO: moves made
-	//TODO : select config?
-	//TODO Test cases
-	
+	public JLabel lblMovesMade;
+			
 	/**
 	 * Create the frame.
 	 */
 	public KlotskiApp(Board b) {
 		
+		//Initialize the main frame
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
 		contentPane = new JPanel();
@@ -42,43 +44,43 @@ public class KlotskiApp extends JFrame {
 		
 
 		
+		//Label for moves made
+		lblMovesMade = new JLabel("Moves made: 0");
+		lblMovesMade.setFocusable(false);
+		
+		//Klotski panel for the puzzle pieces
 		JPanel panel = new KlotskiPanel(b);
-		
-
-		
 		panel.addMouseListener(new KlotskiPanelController(b, (KlotskiPanel)panel));
-		panel.add(new MoveBlockController(b, (KlotskiPanel) panel));		
+		panel.add(new MoveBlockController(b, (KlotskiPanel) panel, lblMovesMade));		
 		panel.setSize(new Dimension(401, 501));
 		
-		JLabel lblMovesMade = new JLabel("Moves Made: 0");
-		lblMovesMade.setFocusable(false);
 
-		
+		//Reset puzzle button
 		JButton resetApplication = new JButton("Reset Game");
 		resetApplication.setFocusable(false);
 		resetApplication.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e) {
-						new ResetPuzzleController(b,(KlotskiPanel)panel).resetPuzzle(null);
+						new ResetPuzzleController(b,(KlotskiPanel)panel).resetPuzzle();
 					}
 				});
 
-		
+		//Adding confirmation to both the close buttons
 		JButton closeApplication = new JButton("Close");
 		closeApplication.setFocusable(false);
 		closeApplication.addActionListener( new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e) {
-					new ExitApplicationController(KlotskiApp.this).windowClosing(null);
+					new ExitApplicationController(KlotskiApp.this).windowClosing();
 				}
 		});
+		addWindowListener (new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				new ExitApplicationController(KlotskiApp.this).windowClosing();;
+			}
+		});
 		
-		
-		
-		
-		
-		
-		
+		//Creating the pane
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
