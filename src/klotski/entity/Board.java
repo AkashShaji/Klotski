@@ -151,6 +151,10 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Figures out if the key block can be slid out of the puzzle
+	 * @return
+	 */
 	public boolean isWinState()
 	{
 		if(board[1][3] != null)
@@ -185,6 +189,10 @@ public class Board {
 					{
 						ret+= board[x][y]; 
 					}
+				}
+				else
+				{
+					ret+="-";
 				}
 				ret+="\t";
 			}

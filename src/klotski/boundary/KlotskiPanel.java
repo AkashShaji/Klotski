@@ -46,7 +46,12 @@ public class KlotskiPanel extends JPanel {
 			}
 		}
 	}
-	
+	/**
+	 * Draws a block in a specified location
+	 * @param g graphics
+	 * @param c color to draw the block
+	 * @param p the puzzle piece to draw
+	 */
 	public void drawKlotskiBlock(Graphics g, Color c, PuzzlePiece p)
 	{
 		int gap = 2;

@@ -1,15 +1,7 @@
 package klotski;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-
-import javax.swing.JFrame;
-
-import org.junit.Assert;
 
 import klotski.boundary.KlotskiApp;
 import klotski.entity.*;
-import klotski.controller.ExitApplicationController;
 
 public class Main {
 	/**

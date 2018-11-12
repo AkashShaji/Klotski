@@ -1,7 +1,5 @@
 package klotski.controller;
 
-import java.awt.event.WindowEvent;
-
 import klotski.boundary.KlotskiPanel;
 import klotski.entity.Board;
 

@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import klotski.boundary.KlotskiPanel;
 import klotski.entity.Board;
 
-public class KlotskiPanelController extends MouseAdapter  {
+public class MouseController extends MouseAdapter  {
 
 	Board board;
 	KlotskiPanel klotskiPanel;
@@ -14,7 +14,7 @@ public class KlotskiPanelController extends MouseAdapter  {
 	 * @param b : a klotski board
 	 * @param kp : the klotski panel
 	 */
-	public KlotskiPanelController(Board b, KlotskiPanel kp) {
+	public MouseController(Board b, KlotskiPanel kp) {
 		board = b;
 		klotskiPanel = kp;
 	}

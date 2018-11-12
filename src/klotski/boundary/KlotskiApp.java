@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import klotski.controller.ExitApplicationController;
-import klotski.controller.KlotskiPanelController;
+import klotski.controller.MouseController;
 import klotski.controller.MoveBlockController;
 import klotski.controller.ResetPuzzleController;
 import klotski.entity.Board;
@@ -48,12 +48,14 @@ public class KlotskiApp extends JFrame {
 		lblMovesMade = new JLabel("Moves made: 0");
 		lblMovesMade.setFocusable(false);
 		
-		//Klotski panel for the puzzle pieces
+		//Klotski pannel for the puzzle pieces
 		JPanel panel = new KlotskiPanel(b);
-		panel.addMouseListener(new KlotskiPanelController(b, (KlotskiPanel)panel));
-		panel.add(new MoveBlockController(b, (KlotskiPanel) panel, lblMovesMade));		
+		panel.addMouseListener(new MouseController(b, (KlotskiPanel)panel));
 		panel.setSize(new Dimension(401, 501));
 		
+		//Adding key listener to frame
+		panel.add(new MoveBlockController(b, (KlotskiPanel) panel, lblMovesMade));		
+
 
 		//Reset puzzle button
 		JButton resetApplication = new JButton("Reset Game");
